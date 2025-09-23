@@ -2,15 +2,31 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Greeter extends Component
 {
+    #[Validate(['required', 'min:2'])]
     public string $name = '';
+
     public string $greeting = '';
+    public string $greetingMessage = '';
 
-    public function changeName() {
+    public function changeGreeting()
+    {
+        $this->reset('greetingMessage');
 
+        $this->validate();
+        
+        $this->greetingMessage = "{$this->greeting}, {$this->name}!";
+    }
+
+    public function rules()
+    {
+        return [
+            'name' => ['required', 'string', 'min:2'],
+        ];
     }
     
     public function render()

@@ -1,6 +1,6 @@
 <div>
     <form
-        wire:submit.prevent="changeName"
+        wire:submit.prevent="changeGreeting"
     >
         <div class="mt-2 flex gap-x-2">
             <select
@@ -17,8 +17,13 @@
                 type="text"
                 class="block w-full p-4 border rounded-md bg-gray-700 text-white"
                 placeholder="Type your name here!"
-                wire:model.live.debouce.1000="name" 
+                wire:model.live.debounce.1000="name" 
             />
+        </div>
+        <div class="text-white/80">
+            @error('name')
+                {{ $message }}
+            @enderror
         </div>
         <div class="mt-2">
             <button
@@ -30,9 +35,9 @@
         </div>
     </form>
 
-    @if ($name !== '')
+    @if ($greetingMessage !== '')
         <div class="mt-5">
-            <h1 class="text-white">{{ $greeting }}, {{ $name }}!</h1>
+            <h1 class="text-white">{{ $greetingMessage }}</h1>
         </div>
     @endif
 </div>
