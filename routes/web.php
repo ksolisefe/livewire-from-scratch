@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Search;
+use App\Livewire\ShowArticle;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,6 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/search', Search::class);
+Route::get('/articles/{article}', ShowArticle::class);
 
 Route::middleware([
     'auth:sanctum',
