@@ -19,13 +19,27 @@
             </style>
         @endif
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            <livewire:search placeholder="Type something to search..." />
-        </header>
-        
-        <main class="mt-6 w-full">
-            {{ $slot }}
-        </main>
+    <body class="font-sans antialiased dark:bg-black bg-gray-50 text-black dark:text-white/50" x-data x-on:click="$dispatch('search:clear-results')">
+        <div class="bg-gray-50 dark:bg-black dark:text-white/50">
+            <div class="relative flex flex-col items-center justify-center min-h-screen">
+                <div class="relative w-full max-w-2xl px-4 lg:px-7 xl:px-0">
+                    <header class="grid grid-cols-2 items-center gap-2 py-3 lg:grid-cols-3">
+                        <div></div>
+                        <div class="flex lg:justify-center lg:col-start-2">
+                            <livewire:search placeholder="Type something to search..." />
+                        </div>
+                    </header>
+                    <main class="mt-8">
+                        {{ $slot }}
+                        test
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('search:clear-results', function (e) {
+                console.log('search results cleared');
+            });
+        </script>
     </body>
 </html>
