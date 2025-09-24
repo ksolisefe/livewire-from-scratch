@@ -16,7 +16,7 @@
                 type="text"
                 class="block w-full p-4 border rounded-md bg-gray-700 text-white"
                 placeholder="Type your name here!"
-                wire:model.live.debounce.1000="name" 
+                wire:model.live.debounce="name" 
             />
         </div>
         <div class="text-white/80">
