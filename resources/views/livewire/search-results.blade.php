@@ -9,8 +9,8 @@
             <p>No results found.</p>
         @endif
         @foreach ($results as $result)
-            <div class="pt-2 text-white text-left">
-                - <a wire:navigate href="/articles/{{ $result->id }}">{{ $result->title }}</a>
+            <div class="pt-2 text-white text-left" wire:key="{{ $result->id }}">
+                - <a wire:navigate.hover href="/articles/{{ $result->id }}">{{ $result->title }}</a>
             </div>
         @endforeach
     </div>

@@ -21,25 +21,32 @@
     </head>
     <body class="font-sans antialiased dark:bg-black bg-gray-50 text-black dark:text-white/50" x-data x-on:click="$dispatch('search:clear-results')">
         <div class="bg-gray-50 dark:bg-black dark:text-white/50">
-            <div class="relative flex flex-col items-center justify-center min-h-screen">
-                <div class="relative w-full max-w-2xl px-4 lg:px-7 xl:px-0">
-                    <header class="grid grid-cols-2 items-center gap-2 py-3 lg:grid-cols-3">
-                        <div></div>
-                        <div class="flex lg:justify-center lg:col-start-2">
-                            <livewire:search placeholder="Type something to search..." />
-                        </div>
-                    </header>
-                    <main class="mt-8">
-                        {{ $slot }}
-                        test
-                    </main>
-                </div>
+            <div class="relative flex flex-col min-h-screen">
+                <header class="flex justify-between items-center w-full bg-white dark:bg-gray-900 py-4 shadow">
+                    <div class="flex flex-row items-center container mx-auto px-4">
+                        <h1 class="text-xl font-semibold mr-4">Laravel Livewire</h1>
+                        <span class="w-px h-10 bg-gray-500"></span>
+                        <ul class="flex flex-row gap-4">
+                            <li>
+                                <a href="/" class="block py-2 px-3">Home</a>
+                            </li>
+                            <li>
+                                <a href="/articles" class="block py-2 px-3">Articles</a>
+                            </li>
+                            <li>
+                                <a href="/dashboard" class="block py-2 px-3 text-blue-500">Admin Dashboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <livewire:search />
+                </header>
+                <main class="mt-8 w-full px-4 lg:px-7 xl:px-0">
+                    {{ $slot }}
+                </main>
             </div>
         </div>
-        <script>
-            document.addEventListener('search:clear-results', function (e) {
-                console.log('search results cleared');
-            });
+        <script data-navigate-once>
+            console.log('page loaded');
         </script>
     </body>
 </html>
