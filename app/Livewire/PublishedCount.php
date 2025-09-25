@@ -10,9 +10,10 @@ use Livewire\Component;
 class PublishedCount extends Component
 {
     public int $count = 0;
+    public string $placeholderText = ''; 
 
     public function mount() {
-        sleep(3);
+        sleep(1);
         
         $this->count = Article::query()
             ->where('published', true)
@@ -21,7 +22,7 @@ class PublishedCount extends Component
     
     public function placeholder() {
         return view('livewire.placeholder', [
-            'message' => 'Published count is loading...'
+            'message' => $this->placeholderText
         ]);
     }
     

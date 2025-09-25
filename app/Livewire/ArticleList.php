@@ -4,25 +4,41 @@ namespace App\Livewire;
 
 use App\Models\Article;
 use Livewire\Attributes\Title;
+use Livewire\WithPagination;
 
 #[Title('Manage Articles')]
 class ArticleList extends AdminComponent
 {
+    use WithPagination;
+
+    public bool $showOnlyPublished = false;
+    
     public function delete(Article $article) {
         $article->delete();
     }
 
+    public function showAll() {
+        $this->showOnlyPublished = false;
+        $this->resetPage(pageName: 'articles-page');
+    }
+    
+    public function showPublished() {
+        $this->showOnlyPublished = true;
+        $this->resetPage(pageName: 'articles-page');
+    }
+
     public function render()
     {
-        // The error occurs because `with(['title', 'content'])` is used incorrectly.
-        // The `with()` method is for eager loading Eloquent relationships, not columns.
-        // 'title' and 'content' are columns, not relationships.
-        // That's why you get a RelationNotFoundException.
-        // To fetch columns, just use `get(['id', 'title', 'content'])` as below:
+        $query = Article::query();
+
+        if ($this->showOnlyPublished) {
+            $query->where('published', 1);
+        }
+        
         return view('livewire.article-list', [
-            'articles' => Article::query()
+            'articles' => $query
                 ->latest()
-                ->get(['id', 'title', 'content']),
+                ->paginate(10, ['id', 'title', 'content'], pageName: 'articles-page'),
         ]);
     }
 }
