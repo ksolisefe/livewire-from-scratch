@@ -25,10 +25,10 @@
                                 <a href="/" class="block py-2 px-3">Home</a>
                             </li>
                             <li>
-                                <a href="/articles" class="block py-2 px-3">Articles</a>
+                                <a href="/dashboard" class="block py-2 px-3 text-blue-500">Admin Dashboard</a>
                             </li>
                             <li>
-                                <a href="/dashboard" class="block py-2 px-3 text-blue-500">Admin Dashboard</a>
+                                <a href="/articles" class="block py-2 px-3">Articles</a>
                             </li>
                         </ul>
                     </div>
