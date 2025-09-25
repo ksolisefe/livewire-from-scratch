@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Livewire\Forms\ArticleForm;
+use App\Models\Article;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
+
+#[Title('Edit Articles')]
+class EditArticle extends AdminComponent
+{
+    public ArticleForm $form;
+    
+    public function mount(Article $article) {
+        $this->form->setArticle($article);
+    }
+    
+    public function save() {
+        $this->form->update();
+
+        $this->redirect('/dashboad/articles', navigate: true);
+    }
+    
+    public function render()
+    {
+        return view('livewire.edit-article');
+    }
+}
