@@ -38,6 +38,8 @@ class ArticleForm extends Form
         }
 
         Article::create($this->only(['title', 'content', 'published', 'notifications']));
+
+        cache()->forget('published-count');
     }
 
     public function update() {
@@ -50,5 +52,7 @@ class ArticleForm extends Form
         $this->article->update(
             $this->only(['title', 'content', 'published', 'notifications'])
         );
+        
+        cache()->forget('published-count');
     }
 }
