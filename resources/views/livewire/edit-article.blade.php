@@ -29,6 +29,25 @@
                 @error('content') <span class="text-red-600">{{ $message }}</span> @enderror
             </div>
         </div>
+        <div class="mb-3">
+            <label wire:target="form.content" class="block" for="article-content">
+                Upload Photo
+            </label>
+            <div class="flex items-center">
+                <input type="file"
+                    wire:model="form.photo"
+                >
+                @if ($form->photo)
+                    {{-- photo path: {{ $form->photo->temporaryUrl() }} --}}
+                    <img class="w-1/2" src="{{ $form->photo->temporaryUrl() }}" alt="Preview of uploaded photo">
+                @elseif($form->photo_path)
+                    <img class="w-1/2" src="{{ Storage::url($form->photo_path) }}">
+                @endif
+            </div>
+            <div>
+                @error('photo') <span class="text-red-600">{{ $message }}</span> @enderror
+            </div>
+        </div>
         <div class="mb-4">
             <label wire:dirty.class="text-orange-400" wire:target="form.published" class="flex items-center">
                 <input type="checkbox" name="published"
@@ -90,9 +109,6 @@
             <button 
                 class="text-gray-200 p-2 bg-blue-700 rounded-sm disabled:opacity-75 disabled:bg-300"
                 type="submit"
-                wire:dirty.class="hover:bg-blue-900"
-                wire:dirty.attr.remove="disabled"
-                disabled
             >
                 Save
             </button>

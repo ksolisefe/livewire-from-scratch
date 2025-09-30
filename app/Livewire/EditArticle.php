@@ -6,10 +6,13 @@ use App\Livewire\Forms\ArticleForm;
 use App\Models\Article;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 #[Title('Edit Articles')]
 class EditArticle extends AdminComponent
 {
+    use WithFileUploads;
+    
     public ArticleForm $form;
     
     public function mount(Article $article) {

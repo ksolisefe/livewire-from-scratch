@@ -23,6 +23,23 @@
                 @error('form.content') <span class="text-red-600">{{ $message }}</span> @enderror
             </div>
         </div>
+        <div class="mb-3">
+            <label wire:target="form.content" class="block" for="article-content">
+                Upload Photo
+            </label>
+            <div class="flex items-center">
+                <input type="file"
+                    wire:model="form.photo"
+                >
+                @if ($form->photo)
+                    {{-- photo path: {{ $form->photo->temporaryUrl() }} --}}
+                    <img class="w-1/2" src="{{ $form->photo->temporaryUrl() }}" alt="Preview of uploaded photo">
+                @endif
+            </div>
+            <div>
+                @error('photo') <span class="text-red-600">{{ $message }}</span> @enderror
+            </div>
+        </div>
         <div class="mb-4">
             <label class="flex items-center">
                 <input type="checkbox" name="published"
