@@ -33,15 +33,24 @@
             <label wire:target="form.content" class="block" for="article-content">
                 Upload Photo
             </label>
-            <div class="flex items-center">
+            <div class="flex text-center">
                 <input type="file"
                     wire:model="form.photo"
                 >
                 @if ($form->photo)
                     {{-- photo path: {{ $form->photo->temporaryUrl() }} --}}
-                    <img class="w-1/2" src="{{ $form->photo->temporaryUrl() }}" alt="Preview of uploaded photo">
+                    <img class="w-1/2 inline" src="{{ $form->photo->temporaryUrl() }}" alt="Preview of uploaded photo">
                 @elseif($form->photo_path)
-                    <img class="w-1/2" src="{{ Storage::url($form->photo_path) }}">
+                    <img class="w-1/2 inline" src="{{ Storage::url($form->photo_path) }}">
+                    <div class="mt-2">
+                        <button
+                            type="button"
+                            class="text-gray-200 p-1 bg-blue-700 rounded-sm hover:bg-blue-900"
+                            wire:click="downloadPhoto"
+                        >
+                            Download
+                        </button>
+                    </div>
                 @endif
             </div>
             <div>
