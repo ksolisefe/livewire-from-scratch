@@ -92,7 +92,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col" x-show="$wire.form.allowNotifications">
+                <div class="flex flex-col" x-show="$wire.form.allowNotifications"
+                    wire:transition.duration.500ms
+                >
                     <label class="flex items-center">
                         <input type="checkbox" value="email" class="mr-2"
                             wire:model="form.notifications"

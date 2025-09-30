@@ -16,7 +16,7 @@
     <body class="font-sans antialiased dark:bg-black bg-gray-50 text-black dark:text-white/50">
         <div class="bg-gray-50 dark:bg-black dark:text-white/50">
             <div class="relative flex flex-col min-h-screen">
-                <header class="flex justify-between items-center w-full bg-white dark:bg-gray-900 py-4 shadow">
+                <header class="flex justify-between items-center w-full bg-white dark:bg-gray-900 py-4 p-8 shadow">
                     <div class="flex flex-row items-center container mx-auto px-4">
                         <h1 class="text-xl font-semibold mr-4">Laravel Livewire</h1>
                         <span class="w-px h-10 bg-gray-500"></span>
@@ -32,7 +32,9 @@
                             </li>
                         </ul>
                     </div>
-                    <livewire:search />
+                    <div class="w-1/2">
+                        <livewire:search placeholder="Type to search an article..."/>
+                    </div>
                 </header>
                 <main class="mt-8 w-full px-4 lg:px-7 xl:px-0">
                     {{ $slot }}
